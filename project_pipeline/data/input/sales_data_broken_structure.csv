@@ -1,0 +1,5 @@
+transaction_id,store_name,product_name,quantity,unit_price
+TXN_001,Store_Paris_01,Laptop_Dell,2,1200.50
+TXN_002,Store_Lyon_02,iPhone_14,1,999.99
+TXN_003,Store_Nice_05,iPad
+TXN_004,Store_Marseille_03,MacBook_Pro,1,2499.00

@@ -11,12 +11,12 @@ if [ "$(ls -A $DIRECTORY 2>/dev/null)" ]; then
         # Check file empty
         if [[ ! -s "$f" ]]; then
             echo "File is empty"
-            exit 1
+            continue
         fi
 
         # check column number in rows
         expected_cols=$(head -1 "$f" | tr ',' '\n' | wc -l)
-        echo "📊 Expected columns: $expected_cols"
+        echo "Expected columns: $expected_cols"
 
         # Check for inconsistent column counts
         inconsistent=$(awk -F',' -v expected="$expected_cols" '
@@ -28,7 +28,8 @@ if [ "$(ls -A $DIRECTORY 2>/dev/null)" ]; then
         if [[ -n "$inconsistent" ]]; then
             echo "Inconsistent column counts found:"
             echo "$inconsistent" | head -5
-            return 1
+            echo "File $filename REJECTED - SKIPPING"
+            continue
         fi
         
         # Check total rows
